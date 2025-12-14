@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.comboBoxModes = new System.Windows.Forms.ComboBox();
             this.progressBar = new System.Windows.Forms.ProgressBar();
@@ -36,6 +37,7 @@
             this.domainUpDown_Time = new System.Windows.Forms.DomainUpDown();
             this.labelTimer = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // comboBoxModes
@@ -93,7 +95,7 @@
             // labelTimer
             // 
             this.labelTimer.AutoSize = true;
-            this.labelTimer.Location = new System.Drawing.Point(12, 99);
+            this.labelTimer.Location = new System.Drawing.Point(11, 99);
             this.labelTimer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTimer.Name = "labelTimer";
             this.labelTimer.Size = new System.Drawing.Size(33, 13);
@@ -105,14 +107,19 @@
             this.labelVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelVersion.Location = new System.Drawing.Point(302, 99);
+            this.labelVersion.Location = new System.Drawing.Point(179, 99);
             this.labelVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.labelVersion.Size = new System.Drawing.Size(104, 13);
+            this.labelVersion.Size = new System.Drawing.Size(227, 13);
             this.labelVersion.TabIndex = 7;
             this.labelVersion.Text = "Ver";
             this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // timer
+            // 
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // FormMain
             // 
@@ -147,6 +154,7 @@
         private System.Windows.Forms.DomainUpDown domainUpDown_Time;
         private System.Windows.Forms.Label labelTimer;
         private System.Windows.Forms.Label labelVersion;
+        private System.Windows.Forms.Timer timer;
     }
 }
 

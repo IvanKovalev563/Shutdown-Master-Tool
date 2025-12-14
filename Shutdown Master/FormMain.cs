@@ -14,30 +14,42 @@ namespace Shutdown_Master
 {
     public partial class FormMain : Form
     {
-        public string[] domainElements = new string[60*60];
+        public bool isShutdowning = false;
 
-        void fillDomainElements()
+        public void fillDomainElements()
         {
+            string[] domainElements = new string[60 * 60];
+            domainUpDown_Time.Items.Clear();
             int counter = 0;
             for (int i = -1; i < 59; i++)
             {
                 for (int j = -1; j < 59; j++)
                 {
-                    domainElements[counter] = (i+1) + " минут " + (j+1) + " секунд";
+                    domainElements[counter] = (i + 1) + " минут " + (j + 1) + " секунд";
                     counter++;
                 }
             }
-            
-            for (int i = 60*60; i > 15; i--)
+
+            for (int i = 60 * 60; i > 15; i--)
             {
-                domainUpDown_Time.Items.Add(domainElements[i-1]);
+                domainUpDown_Time.Items.Add(domainElements[i - 1]);
             }
             domainUpDown_Time.SelectedIndex = Properties.Settings.Default.time;
         }
 
-        public static void cmdShutdownCommands(char mode, int time)
+        public void shutdown(char mode, int time)
         {
-            Process.Start("shutdown", $"{mode} /t {time} /f");
+            if (isShutdowning)
+            {
+                Process.Start("shutdown", $"/a");
+                isShutdowning = false;
+            }
+            else
+            {
+                Process.Start("shutdown", $"{mode} /t {time}");
+                isShutdowning = true;
+                progressBar.Maximum = time;
+            }
         }
 
         public FormMain()
@@ -45,8 +57,7 @@ namespace Shutdown_Master
             InitializeComponent();
             fillDomainElements();
             comboBoxModes.SelectedIndex = Properties.Settings.Default.mode;
-            string ver = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            labelVersion.Text = "v" + ver.Substring(0, ver.Length - 1) + "131225";
+            labelVersion.Text = $"v{Assembly.GetExecutingAssembly().GetName().Version.ToString()} build {141225}";
             labelTimer.Text = "";
             labelTimer.Enabled = false;
             progressBar.Enabled = false;
@@ -62,6 +73,11 @@ namespace Shutdown_Master
         {
             Properties.Settings.Default.time = domainUpDown_Time.SelectedIndex;
             Properties.Settings.Default.Save();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            
         }
     }
 }
