@@ -46,48 +46,49 @@
             this.comboBoxModes.Items.AddRange(new object[] {
             "Завершение работы",
             "Перезагрузка"});
-            this.comboBoxModes.Location = new System.Drawing.Point(12, 35);
+            this.comboBoxModes.Location = new System.Drawing.Point(15, 44);
             this.comboBoxModes.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxModes.Name = "comboBoxModes";
-            this.comboBoxModes.Size = new System.Drawing.Size(286, 21);
+            this.comboBoxModes.Size = new System.Drawing.Size(356, 24);
             this.comboBoxModes.TabIndex = 0;
             this.comboBoxModes.SelectedIndexChanged += new System.EventHandler(this.comboBoxModes_SelectedIndexChanged);
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(12, 75);
+            this.progressBar.Location = new System.Drawing.Point(15, 94);
             this.progressBar.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(395, 18);
+            this.progressBar.Size = new System.Drawing.Size(494, 22);
             this.progressBar.TabIndex = 1;
             // 
             // buttonApply
             // 
             this.buttonApply.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonApply.Location = new System.Drawing.Point(302, 11);
+            this.buttonApply.Location = new System.Drawing.Point(378, 14);
             this.buttonApply.Margin = new System.Windows.Forms.Padding(2);
             this.buttonApply.Name = "buttonApply";
-            this.buttonApply.Size = new System.Drawing.Size(105, 47);
+            this.buttonApply.Size = new System.Drawing.Size(131, 59);
             this.buttonApply.TabIndex = 2;
             this.buttonApply.Text = "Применить";
             this.buttonApply.UseVisualStyleBackColor = true;
+            this.buttonApply.Click += new System.EventHandler(this.buttonApply_Click);
             // 
             // labelDelay
             // 
             this.labelDelay.AutoSize = true;
-            this.labelDelay.Location = new System.Drawing.Point(10, 13);
+            this.labelDelay.Location = new System.Drawing.Point(12, 16);
             this.labelDelay.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelDelay.Name = "labelDelay";
-            this.labelDelay.Size = new System.Drawing.Size(120, 13);
+            this.labelDelay.Size = new System.Drawing.Size(145, 16);
             this.labelDelay.TabIndex = 3;
             this.labelDelay.Text = "Задержка (мин., сек.):";
             // 
             // domainUpDown_Time
             // 
-            this.domainUpDown_Time.Location = new System.Drawing.Point(130, 11);
+            this.domainUpDown_Time.Location = new System.Drawing.Point(162, 14);
             this.domainUpDown_Time.Margin = new System.Windows.Forms.Padding(2);
             this.domainUpDown_Time.Name = "domainUpDown_Time";
-            this.domainUpDown_Time.Size = new System.Drawing.Size(168, 20);
+            this.domainUpDown_Time.Size = new System.Drawing.Size(210, 22);
             this.domainUpDown_Time.TabIndex = 4;
             this.domainUpDown_Time.Text = "domainUpDown1";
             this.domainUpDown_Time.SelectedItemChanged += new System.EventHandler(this.domainUpDown_Time_SelectedItemChanged);
@@ -95,10 +96,10 @@
             // labelTimer
             // 
             this.labelTimer.AutoSize = true;
-            this.labelTimer.Location = new System.Drawing.Point(11, 99);
+            this.labelTimer.Location = new System.Drawing.Point(14, 124);
             this.labelTimer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTimer.Name = "labelTimer";
-            this.labelTimer.Size = new System.Drawing.Size(33, 13);
+            this.labelTimer.Size = new System.Drawing.Size(42, 16);
             this.labelTimer.TabIndex = 6;
             this.labelTimer.Text = "Timer";
             // 
@@ -107,11 +108,11 @@
             this.labelVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelVersion.Location = new System.Drawing.Point(179, 99);
+            this.labelVersion.Location = new System.Drawing.Point(224, 124);
             this.labelVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.labelVersion.Size = new System.Drawing.Size(227, 13);
+            this.labelVersion.Size = new System.Drawing.Size(284, 16);
             this.labelVersion.TabIndex = 7;
             this.labelVersion.Text = "Ver";
             this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -123,9 +124,9 @@
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(417, 127);
+            this.ClientSize = new System.Drawing.Size(521, 159);
             this.Controls.Add(this.labelVersion);
             this.Controls.Add(this.labelTimer);
             this.Controls.Add(this.domainUpDown_Time);

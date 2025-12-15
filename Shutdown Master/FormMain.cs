@@ -14,11 +14,12 @@ namespace Shutdown_Master
 {
     public partial class FormMain : Form
     {
-        public bool isShutdowning = false;
+        string[] domainElements = new string[60 * 60];
+        bool isShutdowning = false;
+        int timerSeconds = 0;
 
         public void fillDomainElements()
         {
-            string[] domainElements = new string[60 * 60];
             domainUpDown_Time.Items.Clear();
             int counter = 0;
             for (int i = -1; i < 59; i++)
@@ -43,12 +44,15 @@ namespace Shutdown_Master
             {
                 Process.Start("shutdown", $"/a");
                 isShutdowning = false;
+                timer.Enabled = false;
             }
             else
             {
-                Process.Start("shutdown", $"{mode} /t {time}");
+                Process.Start("shutdown", $"/{mode} /t {time}");
                 isShutdowning = true;
                 progressBar.Maximum = time;
+                timerSeconds = time;
+                timer.Enabled = true;
             }
         }
 
@@ -57,7 +61,7 @@ namespace Shutdown_Master
             InitializeComponent();
             fillDomainElements();
             comboBoxModes.SelectedIndex = Properties.Settings.Default.mode;
-            labelVersion.Text = $"v{Assembly.GetExecutingAssembly().GetName().Version.ToString()} build {141225}";
+            labelVersion.Text = $"v{Assembly.GetExecutingAssembly().GetName().Version.ToString()} build {151225}";
             labelTimer.Text = "";
             labelTimer.Enabled = false;
             progressBar.Enabled = false;
@@ -77,7 +81,21 @@ namespace Shutdown_Master
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            
+            timerSeconds--;
+        }
+
+        private void buttonApply_Click(object sender, EventArgs e)
+        {
+            int time = Array.IndexOf(domainElements ,domainUpDown_Time.SelectedItem) + 1;
+            char mode;
+            switch (comboBoxModes.SelectedIndex)
+            {
+                case 0: mode = 's'; break;
+                case 1: mode = 'r'; break;
+                default: mode = 's'; break;
+            }
+
+            shutdown(mode, time);
         }
     }
 }
