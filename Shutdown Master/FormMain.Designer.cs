@@ -50,7 +50,7 @@
             this.comboBoxModes.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxModes.Name = "comboBoxModes";
             this.comboBoxModes.Size = new System.Drawing.Size(356, 24);
-            this.comboBoxModes.TabIndex = 0;
+            this.comboBoxModes.TabIndex = 4;
             this.comboBoxModes.SelectedIndexChanged += new System.EventHandler(this.comboBoxModes_SelectedIndexChanged);
             // 
             // progressBar
@@ -63,7 +63,7 @@
             // 
             // buttonApply
             // 
-            this.buttonApply.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonApply.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonApply.Location = new System.Drawing.Point(378, 14);
             this.buttonApply.Margin = new System.Windows.Forms.Padding(2);
             this.buttonApply.Name = "buttonApply";
@@ -89,7 +89,7 @@
             this.domainUpDown_Time.Margin = new System.Windows.Forms.Padding(2);
             this.domainUpDown_Time.Name = "domainUpDown_Time";
             this.domainUpDown_Time.Size = new System.Drawing.Size(210, 22);
-            this.domainUpDown_Time.TabIndex = 4;
+            this.domainUpDown_Time.TabIndex = 0;
             this.domainUpDown_Time.Text = "domainUpDown1";
             this.domainUpDown_Time.SelectedItemChanged += new System.EventHandler(this.domainUpDown_Time_SelectedItemChanged);
             // 
