@@ -19,10 +19,11 @@ namespace Shutdown_Master
         string[] domainElements = new string[60 * 60];
         bool isShutdowning = false;
         int timerSeconds = 0;
+        string timerHeader;
 
         public string verFormat()
         {
-            string buildDate = "151225-2";
+            string buildDate = "151225-3"; // ДАТА БИЛДА
             string verString;
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             if(version.Major > 0)
@@ -60,22 +61,36 @@ namespace Shutdown_Master
         {
             if (isShutdowning)
             {
-                Process.Start("shutdown", $"/a");
+                //Process.Start("shutdown", $"/a");
                 isShutdowning = false;
-                timer.Enabled = false;
+                //timer.Enabled = false;
                 progressBar.Value = 0;
                 progressBar.Enabled = false;
                 labelTimer.Text = "";
                 comboBoxModes_SelectedIndexChanged(null, null);
+                comboBoxModes.Enabled = true;
+                domainUpDown_Time.Enabled = true;
+                timer.Stop();
             }
             else
             {
-                Process.Start("shutdown", $"/{mode} /t {time}");
+                //Process.Start("shutdown", $"/{mode} /t {time}");
+                buttonApply.Text = "Отмена";
                 isShutdowning = true;
                 progressBar.Maximum = time;
                 timerSeconds = time;
-                timer.Enabled = true;
+                //timer.Enabled = true;
                 progressBar.Enabled = true;
+                comboBoxModes.Enabled = false;
+                domainUpDown_Time.Enabled = false;
+                switch (comboBoxModes.SelectedIndex)
+                {
+                    case 0: timerHeader = "До завершения работы: "; break;
+                    case 1: timerHeader = "До перезагрузки: "; break;
+                    default: timerHeader = "Error: "; break;
+                }
+                timer.Start();
+                timer_Tick(null, null);
             }
         }
 
@@ -88,6 +103,7 @@ namespace Shutdown_Master
             labelTimer.Text = "";
             progressBar.Enabled = false;
             comboBoxModes_SelectedIndexChanged(null, null);
+            timer.Stop();
         }
 
         private void comboBoxModes_SelectedIndexChanged(object sender, EventArgs e)
@@ -111,16 +127,16 @@ namespace Shutdown_Master
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            string timerHeader;
-            switch (comboBoxModes.SelectedIndex)
-            {
-                case 0: timerHeader = "До завершения работы: "; break;
-                case 1: timerHeader = "До перезагрузки: "; break;
-                default: timerHeader = "Error: "; break;
-            }
-            labelTimer.Text = timerHeader + domainElements[timerSeconds];
-            progressBar.Value++;
             timerSeconds--;
+            if (timerSeconds > -1)
+            {
+                
+                //labelTimer.Text = timerHeader + domainElements[timerSeconds];
+                int minutes = timerSeconds / 60;
+                int seconds = timerSeconds % 60;
+                labelTimer.Text = $"{timerHeader}{minutes:00}:{seconds:00}";
+                progressBar.Value++;
+            }
         }
         
         private void buttonApply_Click(object sender, EventArgs e)
