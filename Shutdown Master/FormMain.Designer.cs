@@ -38,6 +38,7 @@
             this.labelTimer = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // comboBoxModes
@@ -110,7 +111,7 @@
             this.labelVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelVersion.Location = new System.Drawing.Point(306, 124);
+            this.labelVersion.Location = new System.Drawing.Point(311, 124);
             this.labelVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -124,11 +125,21 @@
             this.timer.Interval = 1000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(291, 124);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(26, 26);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "?";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(521, 159);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.labelVersion);
             this.Controls.Add(this.labelTimer);
             this.Controls.Add(this.domainUpDown_Time);
@@ -137,12 +148,13 @@
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.comboBoxModes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Shutdown Master";
+            this.Text = "Shutdown Master Tool";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,6 +170,7 @@
         private System.Windows.Forms.Label labelTimer;
         private System.Windows.Forms.Label labelVersion;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Button button1;
     }
 }
 
