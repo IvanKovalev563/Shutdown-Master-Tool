@@ -154,5 +154,11 @@ namespace Shutdown_Master
             }
             systemShutdownOrReboot(mode, time);
         }
+
+        private void помощьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormHelp formHelp = new FormHelp();
+            formHelp.ShowDialog();
+        }
     }
 }

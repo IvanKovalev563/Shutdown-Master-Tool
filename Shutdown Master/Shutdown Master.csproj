@@ -101,6 +101,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\programScreenshot.png" />
+    <None Include="Resources\f0a46792-757d-4e46-8dcb-4df0c8114d9d-0.png" />
+    <None Include="Resources\about.png" />
+    <None Include="Resources\help.png" />
+    <None Include="Resources\about.ico" />
+    <None Include="Resources\help.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
