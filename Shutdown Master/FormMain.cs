@@ -23,7 +23,7 @@ namespace Shutdown_Master
 
         public string verFormat()
         {
-            string buildDate = "201225"; // ДАТА БИЛДА
+            string buildDate = "211225-2"; // ДАТА БИЛДА
             string verString;
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             if(version.Major > 0)
