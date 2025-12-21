@@ -166,6 +166,7 @@
             this.опрограммеToolStripMenuItem.Name = "опрограммеToolStripMenuItem";
             this.опрограммеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.опрограммеToolStripMenuItem.Text = "&О программе...";
+            this.опрограммеToolStripMenuItem.Click += new System.EventHandler(this.опрограммеToolStripMenuItem_Click);
             // 
             // FormMain
             // 

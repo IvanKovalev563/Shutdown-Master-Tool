@@ -8,5 +8,8 @@
     <Setting Name="time" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3584</Value>
     </Setting>
+    <Setting Name="build" Type="System.String" Scope="User">
+      <Value Profile="(Default)">000000</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

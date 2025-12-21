@@ -46,5 +46,17 @@ namespace Shutdown_Master.Properties {
                 this["time"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("000000")]
+        public string build {
+            get {
+                return ((string)(this["build"]));
+            }
+            set {
+                this["build"] = value;
+            }
+        }
     }
 }

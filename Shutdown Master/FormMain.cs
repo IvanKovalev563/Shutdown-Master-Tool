@@ -23,7 +23,7 @@ namespace Shutdown_Master
 
         public string verFormat()
         {
-            string buildDate = "211225-2"; // ДАТА БИЛДА
+            string buildDate = "211225-3"; // ДАТА БИЛДА
             string verString;
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             if(version.Major > 0)
@@ -34,6 +34,8 @@ namespace Shutdown_Master
             {
                 verString = $"v{version.ToString()} build {buildDate}";
             }
+            Properties.Settings.Default.build = buildDate;
+            Properties.Settings.Default.Save();
             return verString;
         }
 
@@ -159,6 +161,12 @@ namespace Shutdown_Master
         {
             FormHelp formHelp = new FormHelp();
             formHelp.ShowDialog();
+        }
+
+        private void опрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAbout formAbout = new FormAbout();
+            formAbout.ShowDialog();
         }
     }
 }
