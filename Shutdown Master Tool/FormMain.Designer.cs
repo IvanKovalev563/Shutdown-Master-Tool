@@ -1,4 +1,4 @@
-﻿namespace Shutdown_Master
+﻿namespace Shutdown_Master_Tool
 {
     partial class FormMain
     {
@@ -118,7 +118,7 @@
             // 
             // labelVersion
             // 
-            this.labelVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.labelVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelVersion.Location = new System.Drawing.Point(249, 117);
             this.labelVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -155,7 +155,7 @@
             // 
             // помощьToolStripMenuItem
             // 
-            this.помощьToolStripMenuItem.Image = global::Shutdown_Master.Properties.Resources.help;
+            this.помощьToolStripMenuItem.Image = global::Shutdown_Master_Tool.Properties.Resources.help;
             this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
             this.помощьToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.помощьToolStripMenuItem.Text = "Помощь";
@@ -163,7 +163,7 @@
             // 
             // опрограммеToolStripMenuItem
             // 
-            this.опрограммеToolStripMenuItem.Image = global::Shutdown_Master.Properties.Resources.about;
+            this.опрограммеToolStripMenuItem.Image = global::Shutdown_Master_Tool.Properties.Resources.about;
             this.опрограммеToolStripMenuItem.Name = "опрограммеToolStripMenuItem";
             this.опрограммеToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.опрограммеToolStripMenuItem.Text = "&О программе...";

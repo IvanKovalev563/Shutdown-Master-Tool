@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Shutdown_Master
+namespace Shutdown_Master_Tool
 {
     internal static class Program
     {

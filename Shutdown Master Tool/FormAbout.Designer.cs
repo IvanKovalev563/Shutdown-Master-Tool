@@ -1,4 +1,4 @@
-﻿namespace Shutdown_Master
+﻿namespace Shutdown_Master_Tool
 {
     partial class FormAbout
     {
@@ -39,7 +39,7 @@
             // 
             // pictureBoxLogo
             // 
-            this.pictureBoxLogo.Image = global::Shutdown_Master.Properties.Resources.favicon;
+            this.pictureBoxLogo.Image = global::Shutdown_Master_Tool.Properties.Resources.favicon;
             this.pictureBoxLogo.Location = new System.Drawing.Point(12, 12);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
             this.pictureBoxLogo.Size = new System.Drawing.Size(65, 60);

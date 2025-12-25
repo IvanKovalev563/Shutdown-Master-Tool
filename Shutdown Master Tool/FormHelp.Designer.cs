@@ -1,4 +1,4 @@
-﻿namespace Shutdown_Master
+﻿namespace Shutdown_Master_Tool
 {
     partial class FormHelp
     {
@@ -63,7 +63,7 @@
             // picturebBoxScreenshot
             // 
             this.picturebBoxScreenshot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picturebBoxScreenshot.Image = global::Shutdown_Master.Properties.Resources.programScreenshot;
+            this.picturebBoxScreenshot.Image = global::Shutdown_Master_Tool.Properties.Resources.programScreenshot;
             this.picturebBoxScreenshot.Location = new System.Drawing.Point(12, 12);
             this.picturebBoxScreenshot.Name = "picturebBoxScreenshot";
             this.picturebBoxScreenshot.Size = new System.Drawing.Size(364, 153);
