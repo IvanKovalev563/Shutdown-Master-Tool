@@ -23,7 +23,7 @@ namespace Shutdown_Master
 
         public string verFormat()
         {
-            string buildDate = "211225-3"; // ДАТА БИЛДА
+            string buildDate = "251225"; // ДАТА БИЛДА
             string verString;
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             if(version.Major > 0)
@@ -103,6 +103,12 @@ namespace Shutdown_Master
             progressBar.Enabled = false;
             comboBoxModes_SelectedIndexChanged(null, null);
             timer.Stop();
+
+            toolTip.SetToolTip(comboBoxModes, "Режим завершения работы");
+            toolTip.SetToolTip(domainUpDown_Time, "Задержка завершения работы");
+            toolTip.SetToolTip(buttonApply, "Запуск отсчета до завершения работы");
+            toolTip.SetToolTip(progressBar, "Оставшееся время до завершения работы");
+            toolTip.SetToolTip(labelTimer, "Оставшееся время до завершения работы");
         }
 
         private void comboBoxModes_SelectedIndexChanged(object sender, EventArgs e)
