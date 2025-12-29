@@ -10,8 +10,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ivan Kovalev")]
-[assembly: AssemblyProduct("Shutdown Master")]
-[assembly: AssemblyCopyright("Shutdown Master Copyright ©  2025")]
+[assembly: AssemblyProduct("Shutdown Master Tool")]
+[assembly: AssemblyCopyright("Copyright © Ivan Kovalev, 2025")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -30,6 +30,6 @@ using System.Runtime.InteropServices;
 //      Номер сборки
 //      Редакция
 //
-[assembly: AssemblyVersion("0.4.0.1")]
-[assembly: AssemblyFileVersion("0.4.0.1")]
+[assembly: AssemblyVersion("0.4.0.2")]
+[assembly: AssemblyFileVersion("0.4.0.2")]
 [assembly: NeutralResourcesLanguage("ru")]
