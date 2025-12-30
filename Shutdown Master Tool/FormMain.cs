@@ -23,7 +23,7 @@ namespace Shutdown_Master_Tool
 
         public string verFormat()
         {
-            string buildDate = "291225"; // ДАТА БИЛДА
+            string buildDate = "301225"; // ДАТА БИЛДА
             string verString;
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             if(version.Major > 0)
@@ -153,7 +153,7 @@ namespace Shutdown_Master_Tool
         private void buttonApply_Click(object sender, EventArgs e)
         {
             int time = Array.IndexOf(domainElements ,domainUpDown_Time.SelectedItem) + 1;
-            char mode;
+            char mode = 's';
             switch (comboBoxModes.SelectedIndex)
             {
                 case 0: mode = 's'; break;
@@ -173,6 +173,14 @@ namespace Shutdown_Master_Tool
         {
             FormAbout formAbout = new FormAbout();
             formAbout.ShowDialog();
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (isShutdowning)
+            {
+                Process.Start("shutdown", $"/a");
+            }
         }
     }
 }
