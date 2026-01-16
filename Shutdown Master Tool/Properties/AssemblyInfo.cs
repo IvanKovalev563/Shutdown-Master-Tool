@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных со сборкой.
 [assembly: AssemblyTitle("Shutdown Master")]
-[assembly: AssemblyDescription("A utility for scheduling computer shutdown or restart with a visual countdown timer")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ivan Kovalev")]
 [assembly: AssemblyProduct("Shutdown Master Tool")]
@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("B054E6F8-483D-4398-BE6D-036A73D7034E")]
+[assembly: Guid("1b0777b6-6c52-44a9-ae4a-b5f62001290f")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //
@@ -30,6 +30,6 @@ using System.Runtime.InteropServices;
 //      Номер сборки
 //      Редакция
 //
-[assembly: AssemblyVersion("0.4.1.1")]
-[assembly: AssemblyFileVersion("0.4.1.1")]
+[assembly: AssemblyVersion("0.4.1.0")]
+[assembly: AssemblyFileVersion("0.4.1.0")]
 [assembly: NeutralResourcesLanguage("ru")]
