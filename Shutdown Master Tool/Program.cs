@@ -13,9 +13,13 @@ namespace Shutdown_Master_Tool
     {
         static string guid_ = Assembly.GetExecutingAssembly().GetCustomAttribute<GuidAttribute>().Value;
 
+        [DllImport("user32.dll")]
+        static extern bool SetProcessDPIAware();
+
         [STAThread]
         static void Main()
         {
+            SetProcessDPIAware();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

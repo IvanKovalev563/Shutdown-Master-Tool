@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialSkin;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,9 +22,47 @@ namespace Shutdown_Master_Tool
         int timerSeconds = 0;
         string timerHeader;
 
+        public void setLanguage()
+        {
+            if (Properties.Settings.Default.language == "ru")
+            {
+                menuStrip.Items[0].Text = "Справка";
+                menuStrip.Items[1].Text = "Язык";
+                помощьToolStripMenuItem.Text = "Помощь";
+                опрограммеToolStripMenuItem.Text = "О программе";
+                labelDelay.Text = "Задержка (мин/сек):";
+                comboBoxModes.Items[0] = "Завершение работы";
+                comboBoxModes.Items[1] = "Перезагрузка";
+
+                toolTip.SetToolTip(comboBoxModes, "Режим завершения работы");
+                toolTip.SetToolTip(domainUpDown_Time, "Задержка завершения работы");
+                toolTip.SetToolTip(buttonApply, "Запуск отсчета до завершения работы");
+                toolTip.SetToolTip(progressBar, "Оставшееся время до завершения работы");
+                toolTip.SetToolTip(labelTimer, "Оставшееся время до завершения работы");
+            }
+            else if (Properties.Settings.Default.language == "en")
+            {
+                menuStrip.Items[0].Text = "Help";
+                menuStrip.Items[1].Text = "Language";
+                помощьToolStripMenuItem.Text = "Help";
+                опрограммеToolStripMenuItem.Text = "About";
+                labelDelay.Text = "Delay (min/sec):";
+                comboBoxModes.Items[0] = "Shutdown";
+                comboBoxModes.Items[1] = "Reboot";
+
+                toolTip.SetToolTip(comboBoxModes, "Shutdown mode");
+                toolTip.SetToolTip(domainUpDown_Time, "Shutdown delay");
+                toolTip.SetToolTip(buttonApply, "Start countdown to shutdown");
+                toolTip.SetToolTip(progressBar, "Remaining time until shutdown");
+                toolTip.SetToolTip(labelTimer, "Remaining time until shutdown");
+            }
+            labelVersion.Text = verFormat();
+            fillDomainElements();
+        }
+
         public string verFormat()
         {
-            string buildDate = "160126"; // ДАТА БИЛДА   Формат: [ДДММГГ]
+            string buildDate = "050926"; // BUILD DATE    Format: [DDMMYY]
             string verString;
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             if(version.Major > 0)
@@ -32,14 +71,21 @@ namespace Shutdown_Master_Tool
             }
             else
             {
-                verString = $"v{version.ToString()} build {buildDate}";
+                if(Properties.Settings.Default.language == "ru")
+                {
+                    verString = $"v{version.ToString()} сборка {buildDate}";
+                }
+                else
+                {
+                    verString = $"v{version.ToString()} build {buildDate}";
+                }
             }
             Properties.Settings.Default.build = buildDate;
             Properties.Settings.Default.Save();
             return verString;
         }
 
-        public void fillDomainElements()
+        public void fillDomainElements() // Fill the domainUpDown_Time with time options
         {
             domainUpDown_Time.Items.Clear();
             int counter = 0;
@@ -47,7 +93,14 @@ namespace Shutdown_Master_Tool
             {
                 for (int j = -1; j < 59; j++)
                 {
-                    domainElements[counter] = (i + 1) + " минут " + (j + 1) + " секунд";
+                    if(Properties.Settings.Default.language == "ru")
+                    {
+                        domainElements[counter] = $"{i + 1} мин {j + 1} сек";
+                    }
+                    else
+                    {
+                        domainElements[counter] = $"{i + 1} min {j + 1} sec";
+                    }
                     counter++;
                 }
             }
@@ -56,12 +109,22 @@ namespace Shutdown_Master_Tool
             {
                 domainUpDown_Time.Items.Add(domainElements[i - 1]);
             }
-            domainUpDown_Time.SelectedIndex = Properties.Settings.Default.time;
+
+            int currentIndex = Properties.Settings.Default.time;
+            if (currentIndex >= 0 && currentIndex < domainUpDown_Time.Items.Count)
+            {
+                domainUpDown_Time.SelectedIndex = -1;
+                domainUpDown_Time.SelectedIndex = currentIndex;
+            }
+            else
+            {
+                domainUpDown_Time.SelectedIndex = 0;
+            }
         }
 
         public void systemShutdownOrReboot(char mode, int time)
         {
-            if (isShutdowning)
+            if (isShutdowning) // Cancel shutdown/reboot
             {
                 Process.Start("shutdown", $"/a");
                 isShutdowning = false;
@@ -73,21 +136,43 @@ namespace Shutdown_Master_Tool
                 domainUpDown_Time.Enabled = true;
                 timer.Stop();
             }
-            else
+            else // Start shutdown/reboot
             {
                 Process.Start("shutdown", $"/{mode} /t {time}");
-                buttonApply.Text = "Отмена";
+
+                if(Properties.Settings.Default.language == "ru")
+                {
+                    buttonApply.Text = "Отмена";
+                }
+                else
+                {
+                    buttonApply.Text = "Cancel";
+                }
+
                 isShutdowning = true;
                 progressBar.Maximum = time*100;
                 timerSeconds = time;
                 progressBar.Enabled = true;
                 comboBoxModes.Enabled = false;
                 domainUpDown_Time.Enabled = false;
-                switch (comboBoxModes.SelectedIndex)
+                
+                if(Properties.Settings.Default.language == "ru")
                 {
-                    case 0: timerHeader = "До завершения работы: "; break;
-                    case 1: timerHeader = "До перезагрузки: "; break;
-                    default: timerHeader = "Error: "; break;
+                    switch (comboBoxModes.SelectedIndex)
+                    {
+                        case 0: timerHeader = "До завершения работы: "; break;
+                        case 1: timerHeader = "До перезагрузки: "; break;
+                        default: timerHeader = "Ошибка: "; break;
+                    }
+                }
+                else
+                {
+                    switch (comboBoxModes.SelectedIndex)
+                    {
+                        case 0: timerHeader = "Remaining until shutdown: "; break;
+                        case 1: timerHeader = "Remaining until reboot: "; break;
+                        default: timerHeader = "Error: "; break;
+                    }
                 }
                 timer.Start();
             }
@@ -104,21 +189,37 @@ namespace Shutdown_Master_Tool
             comboBoxModes_SelectedIndexChanged(null, null);
             timer.Stop();
 
-            toolTip.SetToolTip(comboBoxModes, "Режим завершения работы");
-            toolTip.SetToolTip(domainUpDown_Time, "Задержка завершения работы");
-            toolTip.SetToolTip(buttonApply, "Запуск отсчета до завершения работы");
-            toolTip.SetToolTip(progressBar, "Оставшееся время до завершения работы");
-            toolTip.SetToolTip(labelTimer, "Оставшееся время до завершения работы");
+            if(Properties.Settings.Default.language == "ru")
+            {
+                языкLanguageToolStripMenuItem.SelectedIndex = 1;
+            }
+            else
+            {
+                языкLanguageToolStripMenuItem.SelectedIndex = 0;
+            }
+            setLanguage();
         }
 
         private void comboBoxModes_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnText = comboBoxModes.SelectedItem.ToString();
-            switch (comboBoxModes.SelectedIndex)
+            if(Properties.Settings.Default.language == "ru")
             {
-                case 0: buttonApply.Text = "Завершить работу"; break;
-                case 1: buttonApply.Text = "Перезагрузить"; break;
-                default: buttonApply.Text = "Error"; break;
+                switch (comboBoxModes.SelectedIndex)
+                {
+                    case 0: buttonApply.Text = "Завершить работу"; break;
+                    case 1: buttonApply.Text = "Перезагрузить"; break;
+                    default: buttonApply.Text = "Ошибка"; break;
+                }
+            }
+            else
+            {
+                switch (comboBoxModes.SelectedIndex)
+                {
+                    case 0: buttonApply.Text = "Shutdown"; break;
+                    case 1: buttonApply.Text = "Reboot"; break;
+                    default: buttonApply.Text = "Error"; break;
+                }
             }
             Properties.Settings.Default.mode = comboBoxModes.SelectedIndex;
             Properties.Settings.Default.Save();
@@ -181,6 +282,21 @@ namespace Shutdown_Master_Tool
             {
                 Process.Start("shutdown", $"/a");
             }
+        }
+
+        private void языкLanguageToolStripMenuItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (языкLanguageToolStripMenuItem.SelectedIndex == 0)
+            {
+                Properties.Settings.Default.language = "en";
+                Properties.Settings.Default.Save();
+            }
+            else if (языкLanguageToolStripMenuItem.SelectedIndex == 1)
+            {
+                Properties.Settings.Default.language = "ru";
+                Properties.Settings.Default.Save();
+            }
+            setLanguage();
         }
     }
 }

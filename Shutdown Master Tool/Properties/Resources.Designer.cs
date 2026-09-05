@@ -93,9 +93,19 @@ namespace Shutdown_Master_Tool.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap programScreenshot {
+        internal static System.Drawing.Bitmap screenshot_en {
             get {
-                object obj = ResourceManager.GetObject("programScreenshot", resourceCulture);
+                object obj = ResourceManager.GetObject("screenshot_en", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap screenshot_ru {
+            get {
+                object obj = ResourceManager.GetObject("screenshot_ru", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных со сборкой.
-[assembly: AssemblyTitle("Shutdown Master")]
+[assembly: AssemblyTitle("Shutdown Master Tool")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ivan Kovalev")]
 [assembly: AssemblyProduct("Shutdown Master Tool")]
-[assembly: AssemblyCopyright("Copyright © Ivan Kovalev, 2025")]
+[assembly: AssemblyCopyright("Copyright © Ivan Kovalev, 2025-2026")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -30,6 +30,6 @@ using System.Runtime.InteropServices;
 //      Номер сборки
 //      Редакция
 //
-[assembly: AssemblyVersion("0.4.2.0")]
-[assembly: AssemblyFileVersion("0.4.2.0")]
+[assembly: AssemblyVersion("0.5.0.0")]
+[assembly: AssemblyFileVersion("0.5.0.0")]
 [assembly: NeutralResourcesLanguage("ru")]

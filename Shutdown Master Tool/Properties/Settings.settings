@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Shutdown_Master.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Shutdown_Master_Tool.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="mode" Type="System.Int32" Scope="User">
@@ -10,6 +10,9 @@
     </Setting>
     <Setting Name="build" Type="System.String" Scope="User">
       <Value Profile="(Default)">000000</Value>
+    </Setting>
+    <Setting Name="language" Type="System.String" Scope="User">
+      <Value Profile="(Default)">en</Value>
     </Setting>
   </Settings>
 </SettingsFile>

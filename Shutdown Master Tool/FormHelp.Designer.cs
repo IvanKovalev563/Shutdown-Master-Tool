@@ -30,86 +30,89 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHelp));
             this.buttonOK = new System.Windows.Forms.Button();
-            this.labelHelpText = new System.Windows.Forms.Label();
+            this.labelHelp1 = new System.Windows.Forms.Label();
+            this.labelHelp2 = new System.Windows.Forms.Label();
+            this.labelHelp3 = new System.Windows.Forms.Label();
             this.picturebBoxScreenshot = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picturebBoxScreenshot)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonOK
             // 
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOK.Location = new System.Drawing.Point(304, 273);
-            this.buttonOK.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonOK.Location = new System.Drawing.Point(608, 525);
+            this.buttonOK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(72, 22);
+            this.buttonOK.Size = new System.Drawing.Size(144, 42);
             this.buttonOK.TabIndex = 0;
             this.buttonOK.Text = "Ок";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
-            // labelHelpText
+            // labelHelp1
             // 
-            this.labelHelpText.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.labelHelpText.AutoSize = true;
-            this.labelHelpText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelHelpText.Location = new System.Drawing.Point(9, 174);
-            this.labelHelpText.Name = "labelHelpText";
-            this.labelHelpText.Size = new System.Drawing.Size(200, 30);
-            this.labelHelpText.TabIndex = 2;
-            this.labelHelpText.Text = "1) Выберите режим выключения.\r\n\r\n";
+            this.labelHelp1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.labelHelp1.AutoSize = true;
+            this.labelHelp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelHelp1.Location = new System.Drawing.Point(18, 335);
+            this.labelHelp1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelHelp1.Name = "labelHelp1";
+            this.labelHelp1.Size = new System.Drawing.Size(400, 58);
+            this.labelHelp1.TabIndex = 2;
+            this.labelHelp1.Text = "1) Выберите режим выключения.\r\n\r\n";
+            // 
+            // labelHelp2
+            // 
+            this.labelHelp2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.labelHelp2.AutoSize = true;
+            this.labelHelp2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelHelp2.Location = new System.Drawing.Point(18, 363);
+            this.labelHelp2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelHelp2.Name = "labelHelp2";
+            this.labelHelp2.Padding = new System.Windows.Forms.Padding(0, 12, 0, 0);
+            this.labelHelp2.Size = new System.Drawing.Size(523, 41);
+            this.labelHelp2.TabIndex = 4;
+            this.labelHelp2.Text = "2) Установите таймер перед выключением.\r\n";
+            // 
+            // labelHelp3
+            // 
+            this.labelHelp3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelHelp3.AutoSize = true;
+            this.labelHelp3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelHelp3.Location = new System.Drawing.Point(18, 392);
+            this.labelHelp3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelHelp3.Name = "labelHelp3";
+            this.labelHelp3.Padding = new System.Windows.Forms.Padding(0, 23, 0, 0);
+            this.labelHelp3.Size = new System.Drawing.Size(740, 81);
+            this.labelHelp3.TabIndex = 3;
+            this.labelHelp3.Text = "3) Нажмите кнопку запуска выключения. \r\nПри нужде отменить выключение - нажмите н" +
+    "а неё повторно.";
             // 
             // picturebBoxScreenshot
             // 
-            this.picturebBoxScreenshot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picturebBoxScreenshot.Image = global::Shutdown_Master_Tool.Properties.Resources.programScreenshot;
-            this.picturebBoxScreenshot.Location = new System.Drawing.Point(12, 12);
+            this.picturebBoxScreenshot.Image = global::Shutdown_Master_Tool.Properties.Resources.screenshot_en;
+            this.picturebBoxScreenshot.Location = new System.Drawing.Point(24, 23);
+            this.picturebBoxScreenshot.Margin = new System.Windows.Forms.Padding(6);
             this.picturebBoxScreenshot.Name = "picturebBoxScreenshot";
-            this.picturebBoxScreenshot.Size = new System.Drawing.Size(364, 153);
+            this.picturebBoxScreenshot.Size = new System.Drawing.Size(726, 292);
             this.picturebBoxScreenshot.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picturebBoxScreenshot.TabIndex = 1;
             this.picturebBoxScreenshot.TabStop = false;
             // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(9, 204);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(0, 12, 0, 0);
-            this.label1.Size = new System.Drawing.Size(370, 42);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "3) Нажмите кнопку запуска выключения. \r\nПри нужде отменить выключение - нажмите н" +
-    "а неё повторно.";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(9, 189);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
-            this.label2.Size = new System.Drawing.Size(263, 21);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "2) Установите таймер перед выключением.\r\n";
-            // 
             // FormHelp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(391, 306);
+            this.ClientSize = new System.Drawing.Size(782, 588);
             this.ControlBox = false;
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.labelHelpText);
+            this.Controls.Add(this.labelHelp2);
+            this.Controls.Add(this.labelHelp3);
+            this.Controls.Add(this.labelHelp1);
             this.Controls.Add(this.picturebBoxScreenshot);
             this.Controls.Add(this.buttonOK);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormHelp";
@@ -125,8 +128,8 @@
 
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.PictureBox picturebBoxScreenshot;
-        private System.Windows.Forms.Label labelHelpText;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelHelp1;
+        private System.Windows.Forms.Label labelHelp2;
+        private System.Windows.Forms.Label labelHelp3;
     }
 }

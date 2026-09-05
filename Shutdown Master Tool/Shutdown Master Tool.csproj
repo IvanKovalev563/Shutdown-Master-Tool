@@ -51,9 +51,21 @@
   <PropertyGroup>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MaterialSkin, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialSkin.2.2.3.1\lib\net461\MaterialSkin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -104,6 +116,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -122,6 +136,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\screenshot-ru.png" />
+    <None Include="Resources\screenshot-en.png" />
     <None Include="Resources\help.png" />
     <None Include="Resources\programScreenshot.png" />
     <None Include="Resources\about.png" />
