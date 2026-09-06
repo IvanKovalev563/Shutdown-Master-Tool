@@ -57,7 +57,8 @@
             this.comboBoxModes.ItemHeight = 26;
             this.comboBoxModes.Items.AddRange(new object[] {
             "Завершение работы",
-            "Перезагрузка"});
+            "Перезагрузка",
+            "Перезагрузка в BIOS"});
             this.comboBoxModes.Location = new System.Drawing.Point(24, 106);
             this.comboBoxModes.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxModes.Name = "comboBoxModes";

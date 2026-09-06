@@ -7,10 +7,13 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Shutdown_Master_Tool
 {
@@ -19,6 +22,7 @@ namespace Shutdown_Master_Tool
         string btnText;
         string[] domainElements = new string[60 * 60];
         bool isShutdowning = false;
+        bool isBiosMode = false;
         int timerSeconds = 0;
         string timerHeader;
 
@@ -33,6 +37,9 @@ namespace Shutdown_Master_Tool
                 labelDelay.Text = "Задержка (мин/сек):";
                 comboBoxModes.Items[0] = "Завершение работы";
                 comboBoxModes.Items[1] = "Перезагрузка";
+                try { comboBoxModes.Items[2] = "Перезагрузка в BIOS"; }
+                catch { }
+
 
                 toolTip.SetToolTip(comboBoxModes, "Режим завершения работы");
                 toolTip.SetToolTip(domainUpDown_Time, "Задержка завершения работы");
@@ -49,6 +56,8 @@ namespace Shutdown_Master_Tool
                 labelDelay.Text = "Delay (min/sec):";
                 comboBoxModes.Items[0] = "Shutdown";
                 comboBoxModes.Items[1] = "Reboot";
+                try { comboBoxModes.Items[2] = "Reboot to BIOS"; } 
+                catch { }
 
                 toolTip.SetToolTip(comboBoxModes, "Shutdown mode");
                 toolTip.SetToolTip(domainUpDown_Time, "Shutdown delay");
@@ -62,7 +71,7 @@ namespace Shutdown_Master_Tool
 
         public string verFormat()
         {
-            string buildDate = "050926"; // BUILD DATE    Format: [DDMMYY]
+            string buildDate = "060926"; // BUILD DATE    Format: [DDMMYY]
             string verString;
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             if(version.Major > 0)
@@ -124,57 +133,81 @@ namespace Shutdown_Master_Tool
 
         public void systemShutdownOrReboot(char mode, int time)
         {
-            if (isShutdowning) // Cancel shutdown/reboot
+            if (isShutdowning) // Cancel the shutdown/reboot if already in progress
             {
-                Process.Start("shutdown", $"/a");
-                isShutdowning = false;
-                progressBar.Value = 0;
-                progressBar.Enabled = false;
-                labelTimer.Text = "";
-                comboBoxModes_SelectedIndexChanged(null, null);
-                comboBoxModes.Enabled = true;
-                domainUpDown_Time.Enabled = true;
-                timer.Stop();
-            }
-            else // Start shutdown/reboot
-            {
-                Process.Start("shutdown", $"/{mode} /t {time}");
-
-                if(Properties.Settings.Default.language == "ru")
+                if (isBiosMode)
                 {
-                    buttonApply.Text = "Отмена";
+                    timer.Stop();
+                    isShutdowning = false;
+                    isBiosMode = false;
+                    progressBar.Value = 0;
+                    progressBar.Enabled = false;
+                    labelTimer.Text = "";
+                    comboBoxModes.Enabled = true;
+                    domainUpDown_Time.Enabled = true;
+                    comboBoxModes_SelectedIndexChanged(null, null);
                 }
                 else
                 {
-                    buttonApply.Text = "Cancel";
+                    Process.Start("shutdown", $"/a");
+                    isShutdowning = false;
+                    progressBar.Value = 0;
+                    progressBar.Enabled = false;
+                    labelTimer.Text = "";
+                    comboBoxModes_SelectedIndexChanged(null, null);
+                    comboBoxModes.Enabled = true;
+                    domainUpDown_Time.Enabled = true;
+                    timer.Stop();
                 }
+                return;
+            }
 
-                isShutdowning = true;
-                progressBar.Maximum = time*100;
-                timerSeconds = time;
-                progressBar.Enabled = true;
-                comboBoxModes.Enabled = false;
-                domainUpDown_Time.Enabled = false;
-                
-                if(Properties.Settings.Default.language == "ru")
+            isBiosMode = (mode == 'b');
+            comboBoxModes.Enabled = false;
+            domainUpDown_Time.Enabled = false;
+            progressBar.Enabled = true;
+            progressBar.Maximum = time * 100;
+            timerSeconds = time;
+            isShutdowning = true;
+
+            if (isBiosMode) // If the mode is BIOS reboot, just start the timer
+            {
+                timerHeader = Properties.Settings.Default.language == "ru" ? "До перезагрузки в BIOS: " : "Until reboot to BIOS: ";
+                timer.Start();
+                buttonApply.Text = Properties.Settings.Default.language == "ru" ? "Отмена" : "Cancel";
+            }
+            else // If the mode is shutdown or reboot, execute the shutdown command
+            {
+                Process.Start("shutdown", $"/{mode} /t {time}");
+
+                if (Properties.Settings.Default.language == "ru")
                 {
-                    switch (comboBoxModes.SelectedIndex)
+                    switch (mode)
                     {
-                        case 0: timerHeader = "До завершения работы: "; break;
-                        case 1: timerHeader = "До перезагрузки: "; break;
+                        case 's': timerHeader = "До завершения работы: "; break;
+                        case 'r': timerHeader = "До перезагрузки: "; break;
                         default: timerHeader = "Ошибка: "; break;
                     }
                 }
                 else
                 {
-                    switch (comboBoxModes.SelectedIndex)
+                    switch (mode)
                     {
-                        case 0: timerHeader = "Remaining until shutdown: "; break;
-                        case 1: timerHeader = "Remaining until reboot: "; break;
+                        case 's': timerHeader = "Remaining until shutdown: "; break;
+                        case 'r': timerHeader = "Remaining until reboot: "; break;
                         default: timerHeader = "Error: "; break;
                     }
                 }
                 timer.Start();
+                buttonApply.Text = Properties.Settings.Default.language == "ru" ? "Отмена" : "Cancel";
+            }
+        }
+
+        public void checkUefiSupport()
+        {
+            if (!FirmwareHelper.IsUefiSupported())
+            {
+                comboBoxModes.Items.RemoveAt(2); // Remove "Reboot" option if UEFI is not supported
             }
         }
 
@@ -182,7 +215,9 @@ namespace Shutdown_Master_Tool
         {
             InitializeComponent();
             fillDomainElements();
-            comboBoxModes.SelectedIndex = Properties.Settings.Default.mode;
+            checkUefiSupport();
+            try { comboBoxModes.SelectedIndex = Properties.Settings.Default.mode; }
+            catch { comboBoxModes.SelectedIndex = 0; }
             labelVersion.Text = verFormat();
             labelTimer.Text = "";
             progressBar.Enabled = false;
@@ -209,6 +244,7 @@ namespace Shutdown_Master_Tool
                 {
                     case 0: buttonApply.Text = "Завершить работу"; break;
                     case 1: buttonApply.Text = "Перезагрузить"; break;
+                    case 2: buttonApply.Text = "Перезагрузить в BIOS"; break;
                     default: buttonApply.Text = "Ошибка"; break;
                 }
             }
@@ -218,6 +254,7 @@ namespace Shutdown_Master_Tool
                 {
                     case 0: buttonApply.Text = "Shutdown"; break;
                     case 1: buttonApply.Text = "Reboot"; break;
+                    case 2: buttonApply.Text = "Reboot to BIOS"; break;
                     default: buttonApply.Text = "Error"; break;
                 }
             }
@@ -240,7 +277,7 @@ namespace Shutdown_Master_Tool
                 int seconds = timerSeconds % 60;
                 labelTimer.Text = $"{timerHeader}{minutes:00}:{seconds:00}";
                 progressBar.Value++;
-                while(progressBar.Value % 100 != 0)
+                while (progressBar.Value % 100 != 0)
                 {
                     progressBar.Value++;
                 }
@@ -248,19 +285,60 @@ namespace Shutdown_Master_Tool
             else
             {
                 timer.Stop();
+                if (isBiosMode)
+                {
+                    Process.Start("shutdown", "/r /fw /t 0");
+                    isShutdowning = false;
+                    isBiosMode = false;
+                    progressBar.Value = 0;
+                    progressBar.Enabled = false;
+                    labelTimer.Text = "";
+                    comboBoxModes.Enabled = true;
+                    domainUpDown_Time.Enabled = true;
+                    comboBoxModes_SelectedIndexChanged(null, null);
+                }
             }
         }
-        
+
         private void buttonApply_Click(object sender, EventArgs e)
         {
-            int time = Array.IndexOf(domainElements ,domainUpDown_Time.SelectedItem) + 1;
-            char mode = 's';
-            switch (comboBoxModes.SelectedIndex)
+            int selectedIndex = comboBoxModes.SelectedIndex;
+
+            if (selectedIndex == 2) // Admin check for BIOS reboot
             {
-                case 0: mode = 's'; break;
-                case 1: mode = 'r'; break;
-                default: mode = 's'; break;
+                bool isAdmin = false;
+                try
+                {
+                    WindowsIdentity identity = WindowsIdentity.GetCurrent();
+                    WindowsPrincipal principal = new WindowsPrincipal(identity);
+                    isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
+                }
+                catch { }
+
+                if (!isAdmin)
+                {
+                    string msg = Properties.Settings.Default.language == "ru"
+                        ? "Для перезагрузки в BIOS требуется запуск программы от имени администратора."
+                        : "Reboot to BIOS requires running the program as administrator.";
+                    MessageBox.Show(msg, "Ошибка / Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                string confirmMsg = Properties.Settings.Default.language == "ru"
+                    ? "Вы действительно хотите перезагрузить компьютер в BIOS/UEFI?\n\nЭта функция доступна только на системах с UEFI."
+                    : "Are you sure you want to reboot into BIOS/UEFI?\n\nThis function is only available on UEFI systems.";
+                DialogResult result = MessageBox.Show(confirmMsg, "Подтверждение / Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result != DialogResult.Yes)
+                    return;
             }
+
+            int time = Array.IndexOf(domainElements, domainUpDown_Time.SelectedItem) + 1;
+            char mode;
+            if (selectedIndex == 2)
+                mode = 'b';
+            else
+                mode = (selectedIndex == 1) ? 'r' : 's';
+
             systemShutdownOrReboot(mode, time);
         }
 
@@ -280,7 +358,17 @@ namespace Shutdown_Master_Tool
         {
             if (isShutdowning)
             {
-                Process.Start("shutdown", $"/a");
+                if (isBiosMode)
+                {
+                    // If BIOS mode is active, stop the timer and reset the state
+                    timer.Stop();
+                    isShutdowning = false;
+                    isBiosMode = false;
+                }
+                else
+                {
+                    Process.Start("shutdown", $"/a");
+                }
             }
         }
 
@@ -297,6 +385,38 @@ namespace Shutdown_Master_Tool
                 Properties.Settings.Default.Save();
             }
             setLanguage();
+        }
+    }
+
+    public static class FirmwareHelper
+    {
+        // FirmwareType enumeration to represent the firmware type
+        private enum FirmwareType
+        {
+            Unknown = 0,
+            Bios = 1,
+            Uefi = 2,
+            Max = 3
+        }
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern bool GetFirmwareType(ref FirmwareType firmwareType);
+
+        public static bool IsUefiSupported()
+        {
+            try
+            {
+                FirmwareType firmwareType = FirmwareType.Unknown;
+                if (GetFirmwareType(ref firmwareType))
+                {
+                    return firmwareType == FirmwareType.Uefi;
+                }
+                return false; // If the function fails, assume UEFI is not supported
+            }
+            catch
+            {
+                return false; // In case of any exception, assume UEFI is not supported
+            }
         }
     }
 }
