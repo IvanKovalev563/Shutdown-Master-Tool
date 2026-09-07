@@ -4,9 +4,9 @@
 
 ## Download
 
-- Windows x32 (.exe): [Shutdown Master Tool.exe](https://github.com/IvanKovalev563/Shutdown-Master-Tool/releases/download/v0.6.0/Shutdown-Master-Tool.exe)
+- Windows x32 (.exe): [Shutdown Master Tool.exe](https://github.com/IvanKovalev563/Shutdown-Master-Tool/releases/download/v0.6.1/Shutdown-Master-Tool.exe)
   
-- Windows x32 (.zip): [Shutdown Master Tool.zip](https://github.com/IvanKovalev563/Shutdown-Master-Tool/releases/download/v0.6.0/Shutdown-Master-Tool.zip)
+- Windows x32 (.zip): [Shutdown Master Tool.zip](https://github.com/IvanKovalev563/Shutdown-Master-Tool/releases/download/v0.6.1/Shutdown-Master-Tool.zip)
   
 - You can see all releases [here](https://github.com/IvanKovalev563/Shutdown-Master-Tool/releases).
   
