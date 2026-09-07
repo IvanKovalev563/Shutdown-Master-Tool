@@ -71,7 +71,7 @@ namespace Shutdown_Master_Tool
 
         public string verFormat()
         {
-            string buildDate = "060926"; // BUILD DATE    Format: [DDMMYY]
+            string buildDate = "070926"; // BUILD DATE    Format: [DDMMYY]
             string verString;
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             if(version.Major > 0)

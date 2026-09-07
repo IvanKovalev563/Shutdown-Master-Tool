@@ -21,7 +21,7 @@ namespace Shutdown_Master_Tool
             if(Properties.Settings.Default.language == "ru")
             {
                 labelNameAndVer.Text = $"Shutdown Master Tool\nv{ver.Major}.{ver.Minor}.{ver.Build}.{ver.Revision} (сборка {Properties.Settings.Default.build})";
-                labelCopyright.Text = "© Ivan Kovalev, 2025. Все права защищены.";
+                labelCopyright.Text = "© Ivan Kovalev, 2025-2026.\nВсе права защищены.";
             }
             else
             {

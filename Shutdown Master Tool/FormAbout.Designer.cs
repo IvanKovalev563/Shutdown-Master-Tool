@@ -41,7 +41,7 @@
             // 
             this.pictureBoxLogo.Image = global::Shutdown_Master_Tool.Properties.Resources.favicon;
             this.pictureBoxLogo.Location = new System.Drawing.Point(24, 23);
-            this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
             this.pictureBoxLogo.Size = new System.Drawing.Size(130, 115);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -63,7 +63,7 @@
             // 
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOK.Location = new System.Drawing.Point(529, 222);
-            this.buttonOK.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonOK.Margin = new System.Windows.Forms.Padding(6);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(144, 42);
             this.buttonOK.TabIndex = 2;
@@ -86,7 +86,7 @@
             // 
             this.linkLabelGitHub.AutoSize = true;
             this.linkLabelGitHub.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.linkLabelGitHub.Location = new System.Drawing.Point(166, 162);
+            this.linkLabelGitHub.Location = new System.Drawing.Point(166, 177);
             this.linkLabelGitHub.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.linkLabelGitHub.Name = "linkLabelGitHub";
             this.linkLabelGitHub.Size = new System.Drawing.Size(87, 29);
@@ -108,7 +108,7 @@
             this.Controls.Add(this.pictureBoxLogo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FormAbout";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Shutdown Master Tool - About";
