@@ -71,7 +71,7 @@ namespace Shutdown_Master_Tool
 
         public string verFormat()
         {
-            string buildDate = "070926"; // BUILD DATE    Format: [DDMMYY]
+            string buildDate = "100926"; // BUILD DATE    Format: [DDMMYY]
             string verString;
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             if(version.Major > 0)
@@ -356,6 +356,11 @@ namespace Shutdown_Master_Tool
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (e.CloseReason == CloseReason.WindowsShutDown) // Return if the system is shutting down
+            {
+                return;
+            }
+
             if (isShutdowning)
             {
                 if (isBiosMode)
